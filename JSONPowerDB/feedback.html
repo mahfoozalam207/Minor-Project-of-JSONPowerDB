@@ -1,0 +1,197 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="css/style_neww_h.css">
+	<link rel="stylesheet" href="css/style_new.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link
+		href="https://fonts.googleapis.com/css?family=Cormorant+Upright:300,400,500,600,700&amp;subset=latin-ext,vietnamese"
+		rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<style>
+		.no-js #loader {
+			display: none;
+		}
+
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+
+		.se-pre-con {
+			position: fixed;
+
+			left: 0px;
+
+			top: 0px;
+
+			width: 100%;
+
+			height: 100%;
+
+			z-index: 9999;
+
+			background: url(../static/images/loading.gif) center no-repeat #fff;
+
+			background-color: rgb(255, 255, 255);
+
+			background-color: #e5eff1;
+		}
+	</style>
+	<script>
+		$(window).load(function () {
+
+			$(".se-pre-con").fadeOut("slow");;
+		});
+	</script>
+</head>
+
+<body class="main">
+	<div class="se-pre-con"></div>
+	<div class="first">
+		<div class="bg">
+			<div class="in-first">
+				<div class="up">
+					<div class="top">
+						<div class="right">
+							<h2>
+								Minor Project of JsonPowerDB
+							</h2>
+
+						</div>
+
+						<div class="left">
+
+							<a href="#" class="link1"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="link2"><i class="fa fa-twitter"></i></a>
+							<a href="#" class="link3"><i class="fa fa-rss"></i></a>
+							<a href="#" class="link4"><i class="fa fa-vk"></i></a>
+
+
+						</div>
+					</div>
+
+					<div class="sec-top" id="mydrop">
+						<ul class="sec-top">
+							<li id="one-l"><a href="index.html">Home</a></li>
+							<li id="two-l"><a href="about.html">About</a></li>
+
+							<li id="four-l"><a href="http://login2explore.com/jpdb/docs.html">Documentation</a></li>
+							<li id="five-l" class="selected"><a href="feedback.html">Feedback</a></li>
+							<li id="six-l"><a href="data.html">Data Result</a></li>
+							<li id="seven-l" class="selected"><a href="contact.html">Contact Us</a></li>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!--	<div class="container1">
+		 <div class="top">
+			<h1>Welcome to Mini Data Manager !!!</h1>
+			<h3> Upload and Download your data from anywhere and in any format...</h3>
+			
+
+		</div>
+ -->
+	<div class="container">
+		<h2 style="text-align: center">Employee Details</h2>
+		<form id="empForm" method="post">
+			<table align="center">
+			<div class="form-group">
+				<tr>
+				<td><span><label for="empId">Employee ID:</label> <label id="empIdMsg">
+					</label></span></td>
+				<td><input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Employee ID"
+					required></td>
+				</tr>
+			</div>
+			<div class="form-group">
+				<tr>
+				<td><label for="empName">Employee Name:</label></td>
+				<td><input type="text" class="form-control" id="empName" placeholder="Enter Employee Name" name="empName"></td>
+				</tr>
+			</div>
+			<div class="form-group">
+				<tr>
+				<td><label for="empEmail">Email:</label></td>
+				<td><input type="email" class="form-control" id="empEmail" placeholder="Enter Employee Email"
+					name="empEmail"></td>
+				</tr>
+			</div>
+			</table>
+			<input type="button" class="btn btn-primary" id="empSave" value="Save" onclick="saveEmployee();" style="text-align: center;">
+			
+			
+		</form>
+		<iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdUmVSuzRrqUZB3cRkNOO33adSRKGLdyEDs39Zvf6AbP8zUEw/viewform?vc=0&c=0&w=1&flr=0&usp=mail_form_link"
+            width="500" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+	</div>
+	<script>
+		$("#empId").focus();
+		function validateAndGetFormData() {
+			var empIdVar = $("#empId").val();
+			if (empIdVar === "") {
+				alert("Employee ID Required Value");
+				$("#empId").focus();
+				return "";
+			}
+			var empNameVar = $("#empName").val();
+			if (empNameVar === "") {
+				alert("Employee Name is Required Value");
+				$("#empName").focus();
+				return "";
+			}
+			var empEmailVar = $("#empEmail").val();
+			if (empEmailVar === "") {
+				alert("Employee Email is Required Value");
+				$("#empEmail").focus();
+				return "";
+			}
+			var jsonStrObj = {
+				empId: empIdVar,
+				empName: empNameVar,
+				empEmail: empEmailVar,
+			};
+			return JSON.stringify(jsonStrObj);
+		}
+
+		function resetForm() {
+			$("#empId").val("")
+			$("#empName").val("");
+			$("#empEmail").val("");
+			$("#empId").focus();
+		}
+		function saveEmployee() {
+			var jsonStr = validateAndGetFormData();
+			if (jsonStr === "") {
+				return;
+			}
+			var putReqStr = createPUTRequest("90937128|-31948799597140803|90931314",
+				jsonStr, "SAMPLE", "EMP-REL");
+			alert(putReqStr);
+			jQuery.ajaxSetup({ async: false });
+			var resultObj = executeCommandAtGivenBaseUrl(putReqStr,
+				"http://api.login2explore.com:5577", "/api/iml");
+			alert(JSON.stringify(resultObj));
+			jQuery.ajaxSetup({ async: true });
+			resetForm();
+		}
+	</script>
+
+</body>
+
+</html>
